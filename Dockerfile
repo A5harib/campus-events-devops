@@ -3,8 +3,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npx parcel build src/index.html --public-url ./
-
+RUN npx parcel build src/*.html --public-url ./ --no-optimize
 FROM nginx:stable-alpine
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
